@@ -1,26 +1,93 @@
-@import "tailwindcss";
+/* 1. Importurile de fonturi/resurse externe trebuie să fie primele */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 2. Importul principal Tailwind CSS v4 */
+@import 'tailwindcss';
+
+/* 3. Definirea fontului și culorilor în blocul @theme */
+@theme {
+  /* Font Family - mapează automat font-serif și font-cormorant */
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+
+  /* Custom Background Gradients (generează clasa bg-navbar-gradient) */
+  --background-image-navbar-gradient:
+    linear-gradient(
+      180deg,
+      rgba(40, 40, 40, 0.75) 0%,
+      rgba(40, 40, 40, 0.45) 100%
+    ),
+    linear-gradient(0deg, #282828, #282828),
+    /* 2. Stratul Orizontal (stânga-dreapta: mai închis pe margini, mai deschis la mijloc) */
+      linear-gradient(
+        90deg,
+        rgba(40, 40, 40, 0.82) 0%,
+        rgba(40, 40, 40, 0) 50%,
+        rgba(40, 40, 40, 0.82) 100%
+      ),
+    /* 3. Culoarea de bază / Fundalul solid */
+      linear-gradient(0deg, rgba(40, 40, 40, 0.82), rgba(40, 40, 40, 0.82));
+
+  /* Paleta Charcoal */
+  --color-charcoal-50: #f8f9fa;
+  --color-charcoal-100: #e9ecef;
+  --color-charcoal-200: #dee2e6;
+  --color-charcoal-300: #ced4da;
+  --color-charcoal-400: #adb5bd;
+  --color-charcoal-500: #6c757d;
+  --color-charcoal-600: #495057;
+  --color-charcoal-700: #343a40;
+  --color-charcoal-800: #212529;
+  --color-charcoal-900: #121416;
+
+  /* Paleta Golden */
+  --color-golden-50: #fdfbf7;
+  --color-golden-100: #f7f2e8;
+  --color-golden-200: #eee4d1;
+  --color-golden-300: #e2d2b3;
+  --color-golden-400: #d4bc8f;
+  --color-golden-500: #c2a166;
+  --color-golden-600: #ab8548;
+  --color-golden-700: #886737;
+  --color-golden-800: #624a29;
+  --color-golden-900: #42321c;
+
+  /* Paleta Saffron */
+  --color-saffron-50: #fdf8f6;
+  --color-saffron-100: #f9ede8;
+  --color-saffron-200: #f2d5c8;
+  --color-saffron-300: #e8b5a1;
+  --color-saffron-400: #dc8d72;
+  --color-saffron-500: #d06544;
+  --color-saffron-600: #bd4828;
+  --color-saffron-700: #9c361c;
+  --color-saffron-800: #712817;
+  --color-saffron-900: #4a1c12;
+
+  /* Paleta Warm Sand */
+  --color-sand-50: #fdfdf9;
+  --color-sand-75: #fcfbf2;
+  --color-sand-100: #f8f6e3;
+  --color-sand-200: #f0ebc2;
+  --color-sand-300: #e5dda0;
+  --color-sand-400: #d6ca7a;
+  --color-sand-500: #c3b353;
+  --color-sand-600: #a7973d;
+  --color-sand-700: #847530;
+  --color-sand-800: #5f5426;
+  --color-sand-900: #3f371b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* 4. Stiluri globale */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-sand-75);
+  color: var(--color-charcoal-900);
+  font-family:
+    var(--font-serif),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }
