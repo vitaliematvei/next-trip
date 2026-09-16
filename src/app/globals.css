@@ -1,5 +1,7 @@
 /* 1. Importurile de fonturi/resurse externe trebuie să fie primele */
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 /* 2. Importul principal Tailwind CSS v4 */
 @import 'tailwindcss';
@@ -9,6 +11,7 @@
   /* Font Family - mapează automat font-serif și font-cormorant */
   --font-serif: 'Cormorant Garamond', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
+  --font-sans: 'DM Sans', sans-serif;
 
   /* Custom Background Gradients (generează clasa bg-navbar-gradient) */
   --background-image-navbar-gradient:
@@ -27,6 +30,16 @@
       ),
     /* 3. Culoarea de bază / Fundalul solid */
       linear-gradient(0deg, rgba(40, 40, 40, 0.82), rgba(40, 40, 40, 0.82));
+
+  --background-image-hero-gradient: 
+    /* 1. Vignette extrem de fină pe margini */
+    radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 0.75) 100%
+    ),
+    /* 2. Gradientul de bază de la centru (#515151) spre extremități (#484848) */
+      radial-gradient(ellipse 90% 80% at 50% 50%, #515151 0%, #484848 100%);
 
   /* Paleta Charcoal */
   --color-charcoal-50: #f8f9fa;
@@ -65,7 +78,7 @@
   --color-saffron-900: #4a1c12;
 
   /* Paleta Warm Sand */
-  --color-sand-50: #fdfdf9;
+  --color-sand-50: #f9f8f5;
   --color-sand-75: #fcfbf2;
   --color-sand-100: #f8f6e3;
   --color-sand-200: #f0ebc2;
