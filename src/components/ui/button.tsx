@@ -13,14 +13,7 @@ export const Button: React.FC<ButtonProps> = React.forwardRef<
   ButtonProps
 >(
   (
-    {
-      className,
-      variant = 'golden',
-      size = 'md',
-      asChild = false,
-      children,
-      ...props
-    },
+    { className, variant = 'golden', asChild = false, children, ...props },
     ref,
   ) => {
     const baseStyle =
@@ -37,18 +30,7 @@ export const Button: React.FC<ButtonProps> = React.forwardRef<
       text: 'text-charcoal-800 hover:underline bg-transparent px-0 py-0',
     };
 
-    const sizes = {
-      sm: 'text-xs px-3 py-1.5',
-      md: 'text-sm px-4 py-2',
-      lg: 'text-base px-6 py-3',
-    };
-
-    const buttonClassName = cn(
-      baseStyle,
-      sizes[size],
-      variants[variant],
-      className,
-    );
+    const buttonClassName = cn(baseStyle, variants[variant], className);
 
     if (asChild && React.isValidElement<{ className?: string }>(children)) {
       return React.cloneElement(children, {

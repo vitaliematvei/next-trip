@@ -17,8 +17,8 @@
   --background-image-navbar-gradient:
     linear-gradient(
       180deg,
-      rgba(40, 40, 40, 0.75) 0%,
-      rgba(40, 40, 40, 0.45) 100%
+      rgba(47, 47, 47, 0.75) 0%,
+      rgba(47, 47, 47, 0.45) 100%
     ),
     linear-gradient(0deg, #282828, #282828),
     /* 2. Stratul Orizontal (stânga-dreapta: mai închis pe margini, mai deschis la mijloc) */

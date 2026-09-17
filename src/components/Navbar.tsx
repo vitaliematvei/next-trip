@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import StarLogoIcon from './ui/StarLogoIcon';
-import { Button } from './ui/button';
+// import { Button } from './ui/button';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] bg-navbar-gradient text-white py-4 md:py-6 z-50">
+    <header className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] bg-navbar-gradient text-white py-4 z-50">
       <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* LOGO WITH HOVER ANIMATION */}
         <motion.div
@@ -28,10 +28,10 @@ export default function Navbar() {
         >
           <Link
             href="/"
-            className="flex flex-col items-center justify-center gap-1 group leading-none z-50"
+            className="flex flex-col items-center justify-center group leading-none z-50"
           >
-            <StarLogoIcon className="text-[#F3E6BD] w-10 sm:w-12 lg:w-[58px] transition-transform duration-500 ease-out group-hover:rotate-45" />
-            <span className="font-serif text-2xl sm:text-3xl lg:text-[44px] font-semibold tracking-[-0.5px] text-[#F3E6BD] leading-tight mt-0.5 lg:mt-1">
+            <StarLogoIcon className="text-[#F3E6BD] w-12 sm:w-12 lg:w-[66px] transition-transform duration-500 ease-out group-hover:rotate-45" />
+            <span className="font-serif text-2xl sm:text-3xl lg:text-[44px] font-semibold tracking-[-0.5px] text-[#F3E6BD] leading-tight">
               Logo
             </span>
           </Link>
@@ -71,12 +71,12 @@ export default function Navbar() {
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
-              <Button
-                asChild
+              <div
+                // asChild
                 className="py-2.5 px-4 sm:py-3 sm:px-6 rounded-xl text-sm sm:text-[16px] font-medium tracking-normal leading-none"
               >
                 <Link href="/register">Rejoindre l'expérience</Link>
-              </Button>
+              </div>
             </motion.div>
           </div>
 
@@ -129,9 +129,14 @@ export default function Navbar() {
               <Button
                 asChild
                 onClick={() => setIsOpen(false)}
-                className="w-full py-3 rounded-xl text-base font-medium tracking-normal"
+                className="w-full rounded-xl text-base font-medium tracking-normal "
               >
-                <Link href="/register">Rejoindre l'expérience</Link>
+                <Link
+                  href="/register"
+                  className="font-sans font-medium text-[16px] tracking-normal leading-6 px-24"
+                >
+                  Rejoindre l'expérience
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
