@@ -9,7 +9,6 @@
 /* 3. Definirea fontului și culorilor în blocul @theme */
 @theme {
   /* Font Family - mapează automat font-serif și font-cormorant */
-  --font-serif: 'Cormorant Garamond', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-sans: 'DM Sans', sans-serif;
 
