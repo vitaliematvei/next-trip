@@ -35,15 +35,16 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-1/2 w-full z-20 text-[#F8F0D8] max-w-[1440px] bg-[#2B2B2B] -translate-x-1/2">
-      <div className="w-full max-w-[1200px] my-5 px-4 mx-auto flex items-center justify-between">
-        {/* 1. LOGO - Învelit în Link semantic */}
+    <header className="fixed top-0 left-1/2 w-full z-50 text-[#F8F0D8] max-w-[1440px] bg-[#2B2B2B] -translate-x-1/2">
+      <div className="w-full max-w-[1200px] my-5 px-4 mx-auto flex items-center justify-between relative z-50">
+        {/* 1. LOGO */}
         <div className="flex-1 flex flex-col items-start">
           <Link
             href="/"
             className="flex flex-col items-center w-fit focus:outline-none focus:ring-2 focus:ring-[#DFA966] rounded-md"
             aria-label="Next Trip Home"
             data-testid="navbar-logo"
+            onClick={() => setIsOpen(false)}
           >
             <StarLogoIcon className="w-[57.26px] h-[33.98px] self-center" />
             <span className="font-cormorant text-[44px] font-semibold leading-[48.4px] tracking-[-0.5px]">
@@ -52,7 +53,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* 2. NAV (DESKTOP) - Mutat la lg: pentru siguranță pe tablete */}
+        {/* 2. NAV (DESKTOP) */}
         <nav
           className="hidden lg:flex justify-center shrink-0"
           aria-label="Main Navigation"
@@ -133,7 +134,8 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation"
-            className="fixed inset-0 bg-[#121212] bg-opacity-95 backdrop-blur-md flex flex-col justify-between px-6 pt-24 pb-12 z-40 lg:hidden"
+            /* S-a înlocuit `bg-opacity-95` cu `bg-[#121212]` opac și s-a setat `z-40` */
+            className="fixed inset-0 h-screen w-screen bg-[#121212] flex flex-col justify-between px-6 pt-32 pb-12 z-40 lg:hidden overflow-y-auto"
           >
             <nav className="flex flex-col items-center justify-center gap-y-8 my-auto">
               {navLinks.map((link, index) => (
