@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ExperienceSection from '@/components/ExperienceSection';
+import FeaturesSection from '@/components/FeaturesSection';
+import ParallaxImageSection from '@/components/ParallaxImageSection1';
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ExperienceSection />
+      <FeaturesSection />
+      <ParallaxImageSection />
     </main>
   );
 }
