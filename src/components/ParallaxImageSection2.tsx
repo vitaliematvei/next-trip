@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function ParallaxImageSection1() {
+export default function ParallaxImageSection2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Urmărim scroll-ul standard pentru un parallax fin
@@ -30,8 +30,8 @@ export default function ParallaxImageSection1() {
             className="absolute -top-[50%] -bottom-[50%] left-0 right-0 w-full h-[200%]"
           >
             <Image
-              src="/img/landscape-village.jpg"
-              alt="Peisaj montan cu case tradiționale și natură"
+              src="/img/landscape-mountains.jpg"
+              alt="Peisaj montan cu vârfuri stâncoase și natură"
               fill
               sizes="1440px"
               className="object-cover"

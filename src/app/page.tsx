@@ -5,7 +5,12 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ExperienceSection from '@/components/ExperienceSection';
 import FeaturesSection from '@/components/FeaturesSection';
-import ParallaxImageSection from '@/components/ParallaxImageSection1';
+import ParallaxImageSection1 from '@/components/ParallaxImageSection1';
+import WhyUsSection from '@/components/WhyUsSection';
+import ParallaxImageSection2 from '@/components/ParallaxImageSection2';
+import NextTripSection from '@/components/NextTripSection';
+import ExperienceGallerySection from '@/components/ExperienceGallerySection';
+import PrivateExperienceSection from '@/components/PrivateExperienceSection';
 
 export default function Home() {
   return (
@@ -14,7 +19,12 @@ export default function Home() {
       <Hero />
       <ExperienceSection />
       <FeaturesSection />
-      <ParallaxImageSection />
+      <ParallaxImageSection1 />
+      <WhyUsSection />
+      <ParallaxImageSection2 />
+      <NextTripSection />
+      <ExperienceGallerySection />
+      <PrivateExperienceSection />
     </main>
   );
 }
