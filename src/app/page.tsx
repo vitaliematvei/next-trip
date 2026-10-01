@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ExperienceSection from '@/components/ExperienceSection';
@@ -13,6 +12,7 @@ import ExperienceGallerySection from '@/components/ExperienceGallerySection';
 import PrivateExperienceSection from '@/components/PrivateExperienceSection';
 import JournalSection from '@/components/JournalSection';
 import JournalGridSection from '@/components/JournalGridSection';
+import SharedMemoriesSection from '@/components/SharedMemoriesSection';
 
 export default function Home() {
   return (
@@ -29,6 +29,7 @@ export default function Home() {
       <PrivateExperienceSection />
       <JournalSection />
       <JournalGridSection />
+      <SharedMemoriesSection />
     </main>
   );
 }
