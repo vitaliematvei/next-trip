@@ -11,6 +11,8 @@ import ParallaxImageSection2 from '@/components/ParallaxImageSection2';
 import NextTripSection from '@/components/NextTripSection';
 import ExperienceGallerySection from '@/components/ExperienceGallerySection';
 import PrivateExperienceSection from '@/components/PrivateExperienceSection';
+import JournalSection from '@/components/JournalSection';
+import JournalGridSection from '@/components/JournalGridSection';
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
       <NextTripSection />
       <ExperienceGallerySection />
       <PrivateExperienceSection />
+      <JournalSection />
+      <JournalGridSection />
     </main>
   );
 }
