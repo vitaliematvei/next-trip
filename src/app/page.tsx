@@ -13,6 +13,7 @@ import PrivateExperienceSection from '@/components/PrivateExperienceSection';
 import JournalSection from '@/components/JournalSection';
 import JournalGridSection from '@/components/JournalGridSection';
 import SharedMemoriesSection from '@/components/SharedMemoriesSection';
+import FaqSection from '@/components/FaqSection';
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <JournalSection />
       <JournalGridSection />
       <SharedMemoriesSection />
+      <FaqSection />
     </main>
   );
 }
