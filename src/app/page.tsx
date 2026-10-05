@@ -14,6 +14,8 @@ import JournalSection from '@/components/JournalSection';
 import JournalGridSection from '@/components/JournalGridSection';
 import SharedMemoriesSection from '@/components/SharedMemoriesSection';
 import FaqSection from '@/components/FaqSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
       <JournalGridSection />
       <SharedMemoriesSection />
       <FaqSection />
+      <ContactSection />
+      <Footer />
     </main>
   );
 }
