@@ -31,7 +31,7 @@ export default function Hero() {
             playing
             loop
             muted
-            playsinline
+            playsInline
             width="100%"
             height="100%"
             style={{ position: 'absolute', top: 0, left: 0 }}
@@ -41,7 +41,6 @@ export default function Hero() {
                 cc_lang_pref: 'none',
                 iv_load_policy: 3,
                 rel: 0,
-                controls: 0,
                 disablekb: 1,
                 playlist: 'zaEoS2ymoQI',
               },
