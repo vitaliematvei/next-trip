@@ -69,7 +69,7 @@ export default function NextTripSection() {
           {/* Buton */}
           <div className="pt-2">
             <a
-              href="#decouvrir"
+              href="/prochaine-experience"
               className="inline-flex items-center justify-center bg-[#E1C88F] hover:bg-[#d4b97c] text-[#2C2825] font-sans text-[16px] px-6 py-3.5 rounded-[10px] shadow-sm transition-colors duration-200"
             >
               Découvrir l&apos;expérience

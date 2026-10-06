@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function JournalSection() {
   return (
-    <section className="w-full max-w-[1440px] mx-auto bg-[#282828] text-charcoal-50 pt-20 pb-10 sm:pt-28 sm:pb-12 lg:pt-30 px-6 sm:px-10 lg:px-16 flex justify-center items-center">
+    <section id="journal" className="w-full max-w-[1440px] mx-auto bg-[#282828] text-charcoal-50 pt-20 pb-10 sm:pt-28 sm:pb-12 lg:pt-30 px-6 sm:px-10 lg:px-16 flex justify-center items-center">
       <div className="w-full max-w-[1312px] mx-auto flex flex-col items-center">
         {/* Section Header */}
         <motion.div

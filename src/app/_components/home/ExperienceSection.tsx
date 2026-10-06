@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function ExperienceSection() {
   return (
-    <section className="w-full max-w-[1440px] mx-auto bg-[#ECE5C9] text-[#2C2825] py-16 sm:py-24 md:py-32 px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
+    <section id="approche" className="w-full max-w-[1440px] mx-auto bg-[#ECE5C9] text-[#2C2825] py-16 sm:py-24 md:py-32 px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
       {/* Container principal centrat cu spațiere corectă pe ambele părți */}
       <div className="max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
         {/* COLOANA STÂNGA: TITLU + PARAGRAF (470x571) */}

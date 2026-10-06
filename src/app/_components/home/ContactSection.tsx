@@ -26,7 +26,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto relative isolate py-20 sm:py-28 lg:py-[120px] px-6 sm:px-10 lg:px-[64px]  text-[#2C2825] flex justify-center items-center overflow-hidden">
+    <section id="contact" className="w-full max-w-[1440px] mx-auto relative isolate py-20 sm:py-28 lg:py-[120px] px-6 sm:px-10 lg:px-[64px]  text-[#2C2825] flex justify-center items-center overflow-hidden">
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <Image

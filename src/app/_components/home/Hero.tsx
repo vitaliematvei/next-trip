@@ -1,11 +1,18 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ReactPlayer from 'react-player';
 import { MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const valueProps = [
     {
       title: 'En petits groupes',
@@ -20,6 +27,11 @@ export default function Hero() {
       desc: 'Chaque expérience est explorée en amont avant d’être proposée',
     },
   ];
+
+  // Prevenim randarea animațiilor înainte de montare doar dacă e absolut necesar,
+  // dar pentru Framer Motion simplu, dacă serverul și clientul folosesc aceleași valori inițiale,
+  // erorile de hidratare dispar de la sine.
+  // Soluția ideală pentru a nu bloca vizual conținutul la server-side rendering este să lăsăm `initial` stabil.
 
   return (
     <section className="relative min-h-screen w-full bg-hero-gradient mx-auto max-w-[1440px] pt-24 xs:pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-10 sm:pb-14 lg:pb-16 text-[#E6DEC9] flex flex-col justify-between overflow-hidden">
@@ -56,6 +68,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             className="relative z-10 inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 mb-4 sm:mb-6 md:mb-8 text-[#E8E2D5]/80 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
           >
             <MapPin
@@ -74,7 +87,11 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+              ease: 'easeOut',
+            }}
             className="font-cormorant font-semibold relative z-10 leading-[1.12] sm:leading-[1.08] text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] mb-4 sm:mb-6 md:mb-8 tracking-tight text-center max-w-xs xs:max-w-md sm:max-w-2xl md:max-w-3xl lg:max-w-5xl"
           >
             Une autre manière de <br className="hidden sm:inline" />
@@ -85,7 +102,11 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+              ease: 'easeOut',
+            }}
             className="relative z-10 font-normal text-xs xs:text-sm sm:text-base md:text-lg text-[#E8E2D5]/70 max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl mb-6 sm:mb-8 md:mb-10 leading-relaxed px-2 text-center"
           >
             Lorem ipsum dolor sit amet consectetur. Sem in metus vel mauris sed
@@ -98,7 +119,11 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.3,
+              ease: 'easeOut',
+            }}
             className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 md:gap-8 w-full max-w-xs sm:max-w-none"
           >
             <Link
@@ -125,7 +150,11 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{
+            duration: 0.6,
+            delay: 0.4,
+            ease: 'easeOut',
+          }}
           className="relative z-10 grid w-full grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-6 md:gap-8 lg:gap-12 text-center mt-8 sm:mt-12 md:mt-16 lg:mt-20"
         >
           {valueProps.map((prop) => (

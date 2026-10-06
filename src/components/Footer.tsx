@@ -35,8 +35,8 @@ export default function Footer() {
     'font-sans font-normal text-[14px] leading-5 tracking-[0.5px] hover:text-[#F9F8F5] transition-colors';
 
   return (
-    <footer className="w-full max-w-[1440px] mx-auto bg-[#282828] px-6 sm:px-10 lg:px-[64px] text-charcoal-300 pt-12 pb-10">
-      <div className="w-full flex flex-col">
+    <footer className="w-full bg-black">
+      <div className="w-full max-w-[1440px] mx-auto bg-[#282828] px-6 sm:px-10 lg:px-[64px] text-charcoal-300 pt-12 pb-10 flex flex-col">
         {/* Top: Brand + Navigation */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-10">
           {/* Logo + Tagline */}
@@ -60,16 +60,16 @@ export default function Footer() {
           {/* Nav + Social */}
           <div className="flex flex-col items-center lg:items-end gap-6">
             <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              <Link href="#prochaine-experience" className={navLink}>
+              <Link href="/prochaine-experience" className={navLink}>
                 Prochaine expérience
               </Link>
-              <Link href="#approche" className={navLink}>
+              <Link href="/#approche" className={navLink}>
                 L’approche
               </Link>
-              <Link href="#journal" className={navLink}>
+              <Link href="/#journal" className={navLink}>
                 Journal
               </Link>
-              <Link href="#contact" className={navLink}>
+              <Link href="/#contact" className={navLink}>
                 Contact
               </Link>
             </nav>

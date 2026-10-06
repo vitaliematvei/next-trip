@@ -11,10 +11,10 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const navLinks = [
-    { label: "L'approche", href: '#' },
-    { label: 'Prochaine expérience', href: '#' },
-    { label: 'Journal', href: '#' },
-    { label: 'Contact', href: '#' },
+    { label: "L'approche", href: '/#approche' },
+    { label: 'Prochaine expérience', href: '/prochaine-experience' },
+    { label: 'Journal', href: '/#journal' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   useEffect(() => {

@@ -1,41 +1,41 @@
-'use client';
-
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import ExperienceSection from '@/components/ExperienceSection';
-import FeaturesSection from '@/components/FeaturesSection';
-import ParallaxImageSection1 from '@/components/ParallaxImageSection1';
-import WhyUsSection from '@/components/WhyUsSection';
-import ParallaxImageSection2 from '@/components/ParallaxImageSection2';
-import NextTripSection from '@/components/NextTripSection';
-import ExperienceGallerySection from '@/components/ExperienceGallerySection';
-import PrivateExperienceSection from '@/components/PrivateExperienceSection';
-import JournalSection from '@/components/JournalSection';
-import JournalGridSection from '@/components/JournalGridSection';
-import SharedMemoriesSection from '@/components/SharedMemoriesSection';
-import FaqSection from '@/components/FaqSection';
-import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import Hero from './_components/home/Hero';
+import ExperienceSection from './_components/home/ExperienceSection';
+import FeaturesSection from './_components/home/FeaturesSection';
+import ParallaxImageSection1 from './_components/home/ParallaxImageSection1';
+import WhyUsSection from './_components/home/WhyUsSection';
+import ParallaxImageSection2 from './_components/home/ParallaxImageSection2';
+import NextTripSection from './_components/home/NextTripSection';
+import ExperienceGallerySection from './_components/home/ExperienceGallerySection';
+import PrivateExperienceSection from './_components/home/PrivateExperienceSection';
+import JournalSection from './_components/home/JournalSection';
+import JournalGridSection from './_components/home/JournalGridSection';
+import SharedMemoriesSection from './_components/home/SharedMemoriesSection';
+import FaqSection from './_components/home/FaqSection';
+import ContactSection from './_components/home/ContactSection';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black">
+    <>
       <Navbar />
-      <Hero />
-      <ExperienceSection />
-      <FeaturesSection />
-      <ParallaxImageSection1 />
-      <WhyUsSection />
-      <ParallaxImageSection2 />
-      <NextTripSection />
-      <ExperienceGallerySection />
-      <PrivateExperienceSection />
-      <JournalSection />
-      <JournalGridSection />
-      <SharedMemoriesSection />
-      <FaqSection />
-      <ContactSection />
+      <main className="min-h-screen bg-black">
+        <Hero />
+        <ExperienceSection />
+        <FeaturesSection />
+        <ParallaxImageSection1 />
+        <WhyUsSection />
+        <ParallaxImageSection2 />
+        <NextTripSection />
+        <ExperienceGallerySection />
+        <PrivateExperienceSection />
+        <JournalSection />
+        <JournalGridSection />
+        <SharedMemoriesSection />
+        <FaqSection />
+        <ContactSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
