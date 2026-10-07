@@ -3,6 +3,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ExperienceHero from './_components/ExperienceHero';
 import ExperienceHighlights from './_components/ExperienceHighlights';
+import ScatteredGalleryHeader from './_components/ScatteredGalleryHeader';
+import ExperienceDetailsTabs from './_components/ExperienceDetailsTabs';
 
 export const metadata: Metadata = {
   title: 'Prochaine expérience | Next Trip',
@@ -17,6 +19,8 @@ export default function NextExperiencePage() {
       <main className="bg-black">
         <ExperienceHero />
         <ExperienceHighlights />
+        <ScatteredGalleryHeader />
+        <ExperienceDetailsTabs />
       </main>
       <Footer />
     </>
