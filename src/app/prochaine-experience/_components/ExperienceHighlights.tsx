@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, MotionConfig } from 'framer-motion';
+import { motion, MotionConfig, type Variants } from 'framer-motion';
 
 // SVG Icons - adăugat aria-hidden="true" deoarece sunt pur decorative
 const BedIcon = () => (
@@ -107,7 +107,7 @@ const highlights: HighlightItem[] = [
 
 export default function ExperienceHighlights() {
   // Definirea variantelor pentru animația secvențială (stagger)
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -118,7 +118,7 @@ export default function ExperienceHighlights() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 20,
