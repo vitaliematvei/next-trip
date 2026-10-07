@@ -1,33 +1,18 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Clock, Users } from 'lucide-react';
 
 export default function ExperienceHero() {
   const ref = useRef<HTMLElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Scroll tracking for background parallax effect
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   });
 
-  // Apply parallax only after mounting to prevent SSR hydration mismatch
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['-5%', '20%']);
-  const effectiveBackgroundY =
-    isMounted && !shouldReduceMotion ? backgroundY : '0%';
 
   return (
     <section
@@ -37,7 +22,7 @@ export default function ExperienceHero() {
     >
       {/* Background Image with Parallax Effect */}
       <motion.div
-        style={{ y: effectiveBackgroundY }}
+        style={{ y: backgroundY }}
         aria-hidden="true"
         className="absolute inset-x-0 -inset-y-[35%] z-0"
       >
@@ -118,5 +103,3 @@ export default function ExperienceHero() {
     </section>
   );
 }
-
-// End of ExperienceHero component

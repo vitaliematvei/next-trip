@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ExperienceHero from './_components/ExperienceHero';
+import ExperienceHighlights from './_components/ExperienceHighlights';
 
 export const metadata: Metadata = {
   title: 'Prochaine expérience | Next Trip',
@@ -15,7 +16,7 @@ export default function NextExperiencePage() {
       <Navbar />
       <main className="bg-black">
         <ExperienceHero />
-        {/* <ExperienceDetails /> */}
+        <ExperienceHighlights />
       </main>
       <Footer />
     </>
