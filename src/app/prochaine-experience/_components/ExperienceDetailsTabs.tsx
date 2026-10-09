@@ -1,18 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  useReducedMotion,
+  MotionConfig,
+} from 'framer-motion';
 import { MapPin } from 'lucide-react';
+
+// Apariție la scroll, consecventă cu celelalte secțiuni (fade + translate, o singură dată)
+const reveal = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-50px' },
+  transition: { duration: 0.5, delay, ease: 'easeOut' as const },
+});
 
 // Iconiță stelare/romb pentru indicatorul de tab activ
 const TabSparkle = () => (
   <svg
-    width="12"
-    height="12"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="currentColor"
-    className="text-[#C6A378] mx-auto mt-1.5"
+    className="text-[#FAF6F5] mx-auto"
     aria-hidden="true"
   >
     <path d="M12 2 C12 7.5 7.5 12 2 12 C7.5 12 12 16.5 12 22 C12 16.5 16.5 12 22 12 C16.5 12 12 7.5 12 2 Z" />
@@ -113,289 +126,311 @@ export default function ExperienceDetailsTabs() {
   ];
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto bg-[#5c2113] text-[#F8F0D8] py-16 px-4 sm:px-8 md:px-16 font-sans">
-      <div className="max-w-5xl mx-auto">
-        {/* 1. Meniu Navigare Tab-uri (A11y Compliant) */}
-        <div
-          role="tablist"
-          aria-label="Détails du séjour"
-          className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 pb-12 border-b border-[#F8F0D8]/10"
-        >
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                id={`tab-${tab.id}`}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`panel-${tab.id}`}
-                tabIndex={isActive ? 0 : -1}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative text-sm sm:text-base tracking-wide transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A378] py-1 ${
-                  isActive
-                    ? 'text-[#F8F0D8] font-medium'
-                    : 'text-[#F8F0D8]/60 hover:text-[#F8F0D8]'
-                }`}
-              >
-                <span>{tab.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTabIndicator"
-                    className="absolute -bottom-3 left-0 right-0"
-                    transition={{
-                      type: 'spring',
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  >
-                    <div className="h-[1px] bg-[#C6A378] w-full" />
-                    <TabSparkle />
-                  </motion.div>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* 2. Conținut Tab-uri animate cu AnimatePresence */}
-        <div className="pt-12">
-          <AnimatePresence mode="wait">
-            {/* --- TAB 1: PROGRAMME --- */}
-            {activeTab === 'programme' && (
-              <motion.div
-                key="programme"
-                id="panel-programme"
-                role="tabpanel"
-                aria-labelledby="tab-programme"
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="space-y-12"
-              >
-                {/* Header Tab */}
-                <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-                  <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F3E6BD]">
-                    10 jours en immersion
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#E0DAD3]/80 leading-relaxed font-light">
-                    Un rythme pensé pour laisser de la place aux rencontres, aux
-                    imprévus et à ce qui ne se planifie pas.
-                  </p>
-                </div>
-
-                {/* Lista Zilelor */}
-                <div className="divide-y divide-[#F8F0D8]/10">
-                  {programmeDays.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="py-10 first:pt-0 last:pb-0 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start"
+    <MotionConfig reducedMotion="user">
+      <section className="w-full max-w-[1440px] mx-auto bg-[#5c2113] text-[#F8F0D8] py-20 px-4 sm:px-8 md:px-16 font-sans">
+        <div className="max-w-5xl mx-auto">
+          {/* 1. Meniu Navigare Tab-uri (A11y Compliant) */}
+          <div
+            role="tablist"
+            aria-label="Détails du séjour"
+            className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 pb-12"
+          >
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  id={`tab-${tab.id}`}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`panel-${tab.id}`}
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`font-cormorant font-bold relative text-sm sm:text-[26px] tracking-0 leading-8 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A378] py-1 ${
+                    isActive
+                      ? 'text-[#F8F0D8] font-medium'
+                      : 'text-[#F8F0D8]/60 hover:text-[#F8F0D8]'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute -bottom-3 left-0 right-0"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     >
-                      {/* Col 1: Zua */}
-                      <div className="lg:col-span-3 space-y-1">
-                        <h3 className="font-cormorant text-2xl font-normal text-[#F3E6BD]">
-                          {item.day}
-                        </h3>
-                        <p className="text-[10px] uppercase tracking-[2px] text-[#C6A378]">
-                          {item.subday}
-                        </p>
+                      <div className="flex items-center w-full gap-2">
+                        <div className="h-px bg-[#FAF6F5] flex-1" />
+                        <TabSparkle />
+                        <div className="h-px bg-[#FAF6F5] flex-1" />
                       </div>
+                    </motion.div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-                      {/* Col 2: Titlu + Descriere */}
-                      <div className="lg:col-span-5 space-y-3">
-                        <h4 className="font-cormorant text-xl text-[#F8F0D8]">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm leading-relaxed text-[#E0DAD3]/80 font-light">
-                          {item.description}
-                        </p>
-                      </div>
+          {/* 2. Conținut Tab-uri animate cu AnimatePresence */}
+          <div className="pt-12">
+            <AnimatePresence mode="wait">
+              {/* --- TAB 1: PROGRAMME --- */}
+              {activeTab === 'programme' && (
+                <motion.div
+                  key="programme"
+                  id="panel-programme"
+                  role="tabpanel"
+                  aria-labelledby="tab-programme"
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="space-y-12"
+                >
+                  {/* Header Tab */}
+                  <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                    <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-1.2px] leading-12 text-safron-50">
+                      10 jours en immersion
+                    </h2>
+                    <p className="font-sans text-xs sm:text-base text-safron-200 leading-[27.2px] font-normal">
+                      Un rythme pensé pour laisser de la place aux rencontres,
+                      aux imprévus et à ce qui ne se planifie pas.
+                    </p>
+                  </div>
 
-                      {/* Col 3: Imagine + Legendă */}
-                      <div className="lg:col-span-4 space-y-2">
-                        <div className="relative aspect-[16/10] w-full overflow-hidden rounded bg-[#4a1b0d]">
+                  {/* Lista Zilelor */}
+                  <div className="divide-y divide-[#F8F0D8]/10 border-b border-[#F8F0D8]/10">
+                    {programmeDays.map((item, idx) => (
+                      <motion.div
+                        key={idx}
+                        {...reveal()}
+                        className="py-10 first:pt-0 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start"
+                      >
+                        {/* Col 1: Zua */}
+                        <div className="lg:col-span-3 space-y-1">
+                          <h3 className="font-cormorant text-[22px] font-semibold text-sand-50 tracking-0 leading-[33px]">
+                            {item.day}
+                          </h3>
+                          <p className="font-sans text-[12px] font-normal uppercase tracking-[1.5px] leading-base text-[#EFCBBD]">
+                            {item.subday}
+                          </p>
+                        </div>
+
+                        {/* Col 2: Titlu + Descriere */}
+                        <div className="lg:col-span-5 space-y-3">
+                          <h4 className="font-cormorant font-semibold text-[24px] leading-[27.6px] tracking-0 text-[#FAF6F5]">
+                            {item.title}
+                          </h4>
+                          <p className="font-sans font-normal text-xs sm:text-base leading-[27.2px] tracking-0 text-[#EFCBBD]">
+                            {item.description}
+                          </p>
+                        </div>
+
+                        {/* Col 3: Imagine + Legendă */}
+                        <div className="lg:col-span-4 space-y-2">
+                          <div className="relative aspect-16/10 w-full overflow-hidden bg-[#4a1b0d]">
+                            <Image
+                              src={item.imageSrc}
+                              alt={item.title}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 30vw"
+                              className="object-cover"
+                            />
+                          </div>
+                          <p className="font-sans font-normal leading-[18px] tracking-0 text-[14px] text-[#F8F0D8] text-left">
+                            {item.caption}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* --- TAB 2: HÉBERGEMENT --- */}
+              {activeTab === 'hebergement' && (
+                <motion.div
+                  key="hebergement"
+                  id="panel-hebergement"
+                  role="tabpanel"
+                  aria-labelledby="tab-hebergement"
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="space-y-12"
+                >
+                  {/* Header Tab */}
+                  <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+                    <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-1.2px] leading-12 text-safron-50">
+                      Les lieux où vous séjournerez
+                    </h2>
+                    <p className="font-sans text-xs sm:text-base text-safron-200 leading-[27.2px] font-normal">
+                      Lorem ipsum dolor sit amet consectetur. Risus nulla id
+                      elementum a semper id et est. Scelerisque pellentesque
+                      viverra orci sed tempor.
+                    </p>
+                  </div>
+
+                  {/* Lista Cardurilor de Cazare */}
+                  <div className="space-y-6">
+                    {accommodations.map((acc) => (
+                      <motion.div
+                        key={acc.id}
+                        {...reveal()}
+                        className="bg-[#86432B]/80 border border-[#F8F0D8]/10 p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+                      >
+                        {/* Imagine Stânga */}
+                        <div className="md:col-span-4 relative aspect-4/3 w-full overflow-hidden bg-[#3b1309]">
                           <Image
-                            src={item.imageSrc}
-                            alt={item.title}
+                            src={acc.imageSrc}
+                            alt={acc.title}
                             fill
-                            sizes="(max-width: 1024px) 100vw, 30vw"
+                            sizes="(max-width: 768px) 100vw, 30vw"
                             className="object-cover"
                           />
                         </div>
-                        <p className="text-[11px] italic text-[#E0DAD3]/60 text-right">
-                          {item.caption}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
 
-            {/* --- TAB 2: HÉBERGEMENT --- */}
-            {activeTab === 'hebergement' && (
-              <motion.div
-                key="hebergement"
-                id="panel-hebergement"
-                role="tabpanel"
-                aria-labelledby="tab-hebergement"
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="space-y-12"
-              >
-                {/* Header Tab */}
-                <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-                  <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F3E6BD]">
-                    Les lieux où vous séjournerez
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#E0DAD3]/80 leading-relaxed font-light">
-                    Lorem ipsum dolor sit amet consectetur. Risus nulla id
-                    elementum a semper id et est. Scelerisque pellentesque
-                    viverra orci sed tempor.
-                  </p>
-                </div>
-
-                {/* Lista Cardurilor de Cazare */}
-                <div className="space-y-6">
-                  {accommodations.map((acc) => (
-                    <div
-                      key={acc.id}
-                      className="bg-[#4d1a0e]/80 border border-[#F8F0D8]/10 rounded-lg p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
-                    >
-                      {/* Imagine Stânga */}
-                      <div className="md:col-span-4 relative aspect-[4/3] w-full overflow-hidden rounded bg-[#3b1309]">
-                        <Image
-                          src={acc.imageSrc}
-                          alt={acc.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 30vw"
-                          className="object-cover"
-                        />
-                      </div>
-
-                      {/* Detalii Dreapta */}
-                      <div className="md:col-span-8 space-y-3">
-                        <div className="inline-flex items-center gap-1.5 text-xs text-[#C6A378]">
-                          <MapPin size={14} aria-hidden="true" />
-                          <span className="uppercase tracking-wider font-medium text-[11px]">
-                            {acc.location}
-                          </span>
+                        {/* Detalii Dreapta */}
+                        <div className="md:col-span-8 space-y-3">
+                          <div className="inline-flex items-center gap-1.5 text-[#EFCBBD]">
+                            <MapPin size={16} aria-hidden="true" />
+                            <span className="font-sans text-base font-normal tracking-0 leading-6">
+                              {acc.location}
+                            </span>
+                          </div>
+                          <h3 className="font-sans font-medium text-[20px] leading-[30px] tracking-0  tracking-0 text-[#FAF6F5]">
+                            {acc.title}
+                          </h3>
+                          <p className="font-sans font-normal text-xs sm:text-base leading-6 tracking-0 text-[##EFCBBD]">
+                            {acc.description}
+                          </p>
                         </div>
-                        <h3 className="font-cormorant text-xl sm:text-2xl text-[#F8F0D8]">
-                          {acc.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm leading-relaxed text-[#E0DAD3]/80 font-light">
-                          {acc.description}
-                        </p>
-                      </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* --- TAB 3: INFORMATIONS PRATIQUES --- */}
+              {activeTab === 'pratique' && (
+                <motion.div
+                  key="pratique"
+                  id="panel-pratique"
+                  role="tabpanel"
+                  aria-labelledby="tab-pratique"
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="space-y-12"
+                >
+                  {/* Header Tab */}
+                  <div className="text-left mx-auto space-y-6 mb-8">
+                    <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-0 leading-12 text-safron-50">
+                      Ce qu'il faut savoir avant de partir
+                    </h2>
+                    <p className="font-sans font-normal text-xs sm:text-base text-safron-200 leading-6 tracking-0">
+                      Lorem ipsum dolor sit amet consectetur. Viverra in eros
+                      velit sed convallis ullamcorper scelerisque scelerisque.
+                      Imperdiet netus morbi augue eu mi adipiscing dolor
+                      tincidunt. Lacus arcu tincidunt viverra risus vitae
+                      consequat sagittis ipsum. Lectus a in gravida augue lacus.
+                      Cras aenean tincidunt ullamcorper magna non in aenean
+                      tempus. Risus enim non quis eleifend morbi. Vel blandit
+                      sed euismod aliquam donec pulvinar diam arcu.
+                    </p>
+                  </div>
+
+                  {/* Harta Traseului */}
+                  <motion.div {...reveal()} className="space-y-4">
+                    <h3 className="font-cormorant font-semibold text-[24px] leading-12 tracking-0 text-[#FAF6F5] text-center sm:text-left">
+                      Les grandes étapes de votre expérience
+                    </h3>
+                    <div className="relative aspect-[16/9] w-full overflow-hidden  bg-[#4d1a0e] border border-[#F8F0D8]/10">
+                      <Image
+                        src="/img/landscape-mountains.jpg"
+                        alt="Carte du parcours et étapes"
+                        fill
+                        sizes="100vw"
+                        className="object-cover opacity-80"
+                      />
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+                  </motion.div>
 
-            {/* --- TAB 3: INFORMATIONS PRATIQUES --- */}
-            {activeTab === 'pratique' && (
-              <motion.div
-                key="pratique"
-                id="panel-pratique"
-                role="tabpanel"
-                aria-labelledby="tab-pratique"
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -15 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="space-y-12"
-              >
-                {/* Header Tab */}
-                <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
-                  <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F3E6BD]">
-                    Ce qu'il faut savoir avant de partir
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#E0DAD3]/80 leading-relaxed font-light">
-                    Lorem ipsum dolor sit amet consectetur. Vivamus eros velit
-                    sed convallis pellentesque neque gravida scelerisque.
-                  </p>
-                </div>
-
-                {/* Harta Traseului */}
-                <div className="space-y-4">
-                  <h3 className="font-cormorant text-2xl text-[#F3E6BD] text-center sm:text-left">
-                    Les grandes étapes de votre expérience
-                  </h3>
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#4d1a0e] border border-[#F8F0D8]/10">
-                    <Image
-                      src="/img/landscape-mountains.jpg"
-                      alt="Carte du parcours et étapes"
-                      fill
-                      sizes="100vw"
-                      className="object-cover opacity-80"
-                    />
-                  </div>
-                </div>
-
-                {/* Inclus vs Non Inclus */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 pt-6">
-                  {/* CE QUI EST INCLUS */}
-                  <div className="space-y-4">
-                    <span className="text-[11px] uppercase tracking-[2px] text-[#C6A378] block">
-                      Ce qui est inclus
-                    </span>
-                    <h3 className="font-cormorant text-2xl sm:text-3xl text-[#F8F0D8]">
-                      Nous nous occupons de
-                    </h3>
-                    <ul className="space-y-3 pt-2 list-none p-0">
-                      {inclusList.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-xs sm:text-sm text-[#E0DAD3]/90 font-light leading-relaxed"
-                        >
-                          <span
-                            className="text-[#C6A378] mt-1 text-base leading-none"
-                            aria-hidden="true"
+                  {/* Inclus vs Non Inclus */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 pt-6">
+                    {/* CE QUI EST INCLUS */}
+                    <motion.div {...reveal()} className="space-y-4">
+                      <span className="font-sans text-[14px] font-normal uppercase tracking-[1.5px] leading-base text-[#EFCBBD] block">
+                        Ce qui est inclus
+                      </span>
+                      <h3 className="font-cormorant font-semibold text-[40px] leading-[42px] tracking-[0.8px] text-[#FAF6F5]">
+                        Nous nous occupons de
+                      </h3>
+                      <ul className="space-y-3 pt-2 list-none p-0">
+                        {inclusList.map((item, i) => (
+                          <motion.li
+                            key={i}
+                            {...reveal(i * 0.08)}
+                            className="flex items-start gap-3 font-sans font-normal text-xs sm:text-base leading-[27.2px] tracking-0 text-[#EFCBBD]"
                           >
-                            •
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                            <span
+                              className="text-sand-400 text-2xl shrink-0"
+                              aria-hidden="true"
+                            >
+                              •
+                            </span>
+                            <span className="font-sans font-normal text-[#EFCBBD] mt-1 text-base leading-[26.4px] tracking-0">
+                              {item}
+                            </span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
 
-                  {/* NON INCLUS */}
-                  <div className="space-y-4">
-                    <span className="text-[11px] uppercase tracking-[2px] text-[#C6A378] block">
-                      Non inclus
-                    </span>
-                    <h3 className="font-cormorant text-2xl sm:text-3xl text-[#F8F0D8]">
-                      À prévoir de votre côté
-                    </h3>
-                    <ul className="space-y-3 pt-2 list-none p-0">
-                      {nonInclusList.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-xs sm:text-sm text-[#E0DAD3]/90 font-light leading-relaxed"
-                        >
-                          <span
-                            className="text-[#C6A378] mt-1 text-base leading-none"
-                            aria-hidden="true"
+                    {/* NON INCLUS */}
+                    <motion.div
+                      {...reveal(0.15)}
+                      className="space-y-4 mt-6 md:mt-0"
+                    >
+                      <span className="font-sans text-[14px] font-normal uppercase tracking-[1.5px] leading-base text-[#EFCBBD] block">
+                        Non inclus
+                      </span>
+                      <h3 className="font-cormorant font-semibold text-[40px] leading-[42px] tracking-[0.8px] text-[#FAF6F5]">
+                        À prévoir de votre côté
+                      </h3>
+                      <ul className="space-y-3 pt-2 list-none p-0">
+                        {nonInclusList.map((item, i) => (
+                          <motion.li
+                            key={i}
+                            {...reveal(i * 0.08)}
+                            className="flex items-start gap-3 font-sans font-normal text-xs sm:text-base leading-[27.2px] tracking-0 text-[#EFCBBD]"
                           >
-                            •
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                            <span
+                              className="text-sand-400 text-2xl shrink-0"
+                              aria-hidden="true"
+                            >
+                              •
+                            </span>
+                            <span className="font-sans font-normal text-[#EFCBBD] mt-1 text-base leading-[26.4px] tracking-0">
+                              {item}
+                            </span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </MotionConfig>
   );
 }

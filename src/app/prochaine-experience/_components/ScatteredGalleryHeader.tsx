@@ -152,7 +152,7 @@ export default function ScatteredGalleryHeader() {
         <div
           ref={panelRef}
           style={{ top: pinTop }}
-          className="sticky flex pt-8 min-[480px]:pt-4 pb-10 sm:py-0 sm:h-screen w-full flex-col items-center justify-center sm:justify-start lg:justify-center sm:pt-6 lg:pt-0 overflow-hidden px-4"
+          className="sticky flex pt-8 min-[480px]:pt-4 pb-10 sm:py-0 lg:pb-[5%] sm:h-screen w-full flex-col items-center justify-center sm:justify-start lg:justify-center sm:pt-6 lg:pt-0 overflow-hidden px-4"
         >
           {/* 1. Text centrat; se derulează normal împreună cu pagina */}
           <div className="relative z-20 max-w-3xl text-center flex flex-col items-center gap-10 px-4 pt-8 pb-8 min-[480px]:pt-4 sm:py-8">
@@ -214,7 +214,7 @@ export default function ScatteredGalleryHeader() {
           {/* 2. Galerie de imagini împrăștiate cu Parallax */}
           <motion.div
             style={{ '--p': layerProgress } as React.CSSProperties}
-            className="absolute inset-x-0 top-72 z-10 h-[135%] sm:h-[200%] [--end:calc(-33.333%-18rem)] sm:[--end:calc(-50%-18rem)] translate-y-[calc(var(--p)*var(--end))] pointer-events-none"
+            className="absolute inset-x-0 top-72 z-10 h-[135%] sm:h-[200%] [--end:calc(-33.333%-18rem-90px)] sm:[--end:calc(-50%-18rem-90px)] translate-y-[calc(var(--p)*var(--end))] pointer-events-none"
             aria-hidden="true"
           >
             {images.map((img) => (
