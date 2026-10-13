@@ -8,6 +8,9 @@ import ExperienceDetailsTabs from './_components/ExperienceDetailsTabs';
 import ExperienceParalaxSection from './_components/ExperienceParalaxSection';
 import ExperienceTwoColumnSection from './_components/ExperienceTwoColumnSection';
 import ExperienceUniqueParenthesisSection from './_components/ExperienceUniqueParenthesisSection';
+import HorizontalScrollGallery from './_components/HorizontalScrollGallery';
+import SharedMemoriesSection from '../_components/home/SharedMemoriesSection';
+import ExperienceFaqSection from './_components/ExperienceFaqSection';
 
 export const metadata: Metadata = {
   title: 'Prochaine expérience | Next Trip',
@@ -27,6 +30,9 @@ export default function NextExperiencePage() {
         <ExperienceParalaxSection />
         <ExperienceTwoColumnSection />
         <ExperienceUniqueParenthesisSection />
+        <HorizontalScrollGallery />
+        <SharedMemoriesSection />
+        <ExperienceFaqSection />
       </main>
       <Footer />
     </>
