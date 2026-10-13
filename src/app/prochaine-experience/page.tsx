@@ -7,6 +7,7 @@ import ScatteredGalleryHeader from './_components/ScatteredGalleryHeader';
 import ExperienceDetailsTabs from './_components/ExperienceDetailsTabs';
 import ExperienceParalaxSection from './_components/ExperienceParalaxSection';
 import ExperienceTwoColumnSection from './_components/ExperienceTwoColumnSection';
+import ExperienceUniqueParenthesisSection from './_components/ExperienceUniqueParenthesisSection';
 
 export const metadata: Metadata = {
   title: 'Prochaine expérience | Next Trip',
@@ -25,6 +26,7 @@ export default function NextExperiencePage() {
         <ExperienceDetailsTabs />
         <ExperienceParalaxSection />
         <ExperienceTwoColumnSection />
+        <ExperienceUniqueParenthesisSection />
       </main>
       <Footer />
     </>

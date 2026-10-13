@@ -137,9 +137,9 @@ export default function ExperienceHighlights() {
     <MotionConfig reducedMotion="user">
       <section
         aria-labelledby="experience-highlights-title"
-        className="w-full max-w-[1440px] mx-auto bg-[#282828] py-10 md:py-14 px-6 md:px-12 text-sand-75"
+        className="w-full max-w-[1440px] mx-auto bg-[#282828] py-10 md:py-14 px-6 sm:px-10 lg:px-16 text-sand-75"
       >
-        <div className="max-w-6xl mx-auto">
+        <div className="w-full mx-auto">
           {/* Titlul secțiunii legat de <section> prin aria-labelledby */}
           <motion.h2
             id="experience-highlights-title"

@@ -127,8 +127,8 @@ export default function ExperienceDetailsTabs() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="w-full max-w-[1440px] mx-auto bg-[#5c2113] text-[#F8F0D8] py-20 px-4 sm:px-8 md:px-16 font-sans">
-        <div className="max-w-5xl mx-auto">
+      <section className="w-full max-w-[1440px] mx-auto bg-[#5c2113] text-[#F8F0D8] py-20 px-6 sm:px-10 lg:px-16 font-sans">
+        <div className="w-full mx-auto">
           {/* 1. Meniu Navigare Tab-uri (A11y Compliant) */}
           <div
             role="tablist"

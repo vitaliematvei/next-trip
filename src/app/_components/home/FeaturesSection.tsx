@@ -32,8 +32,8 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="w-full max-w-[1440px] mx-auto bg-[#231F1D] text-[#EFECE6] py-16 sm:py-20 md:py-24 px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
-      <div className="max-w-[1360px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <section className="w-full max-w-[1440px] mx-auto bg-[#231F1D] text-[#EFECE6] py-16 sm:py-20 md:py-24     px-6 sm:px-10 lg:px-16 overflow-hidden">
+          <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         {features.map((feature, index) => {
           const IconComponent = feature.icon;
           return (

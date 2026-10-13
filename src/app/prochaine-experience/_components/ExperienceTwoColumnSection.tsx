@@ -9,9 +9,9 @@ export default function ExperienceTwoColumnSection() {
   return (
     <section
       aria-labelledby="content-section-title"
-      className="w-full max-w-[1440px] mx-auto bg-[#282828] text-charcoal-75 py-16 px-6 md:px-16 lg:px-24"
+      className="w-full max-w-[1440px] mx-auto bg-[#282828] text-charcoal-75 py-16       px-6 sm:px-10 lg:px-16"
     >
-      <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
+            <div className="w-full mx-auto space-y-10 md:space-y-12">
         {/* 1. Titlul principal cu font Serif */}
         <motion.h2
           id="content-section-title"

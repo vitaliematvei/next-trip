@@ -62,7 +62,7 @@ export default function Hero() {
       </div>
 
       {/* 2. CONȚINUT HERO */}
-      <div className="flex flex-col relative z-10 w-full max-w-[1200px] my-auto px-4 sm:px-6 md:px-8 mx-auto items-center justify-between">
+      <div className="flex flex-col relative z-10 w-full my-auto px-6 sm:px-10 lg:px-16 mx-auto items-center justify-between">
         <div className="py-2 sm:py-6 md:py-10 lg:py-12 text-center flex flex-col items-center">
           {/* BADGE */}
           <motion.div

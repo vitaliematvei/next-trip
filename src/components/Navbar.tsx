@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-1/2 w-full z-50 text-[#F8F0D8] max-w-[1440px] bg-[#2B2B2B] -translate-x-1/2">
-      <div className="w-full max-w-[1200px] my-5 px-4 mx-auto flex items-center justify-between relative z-50">
+      <div className="w-full my-5 px-6 sm:px-10 lg:px-16 mx-auto flex items-center justify-between relative z-50">
         {/* 1. LOGO */}
         <div className="flex-1 flex flex-col items-start">
           <Link
