@@ -163,7 +163,7 @@ export default function JoinExperienceTimeline() {
     (pt) => `calc(50% - 60px + ${pt.x}px)`,
   );
   const tipTop = useTransform(tipPoint, (pt) => `${(pt.y / 400) * 100}%`);
-  const tipOpacity = useTransform(pathLength, [0.97, 1], [1, 0]);
+  const tipOpacity = useTransform(pathLength, [steps[3].at, 1], [1, 0]);
 
   return (
     <section
@@ -215,7 +215,7 @@ export default function JoinExperienceTimeline() {
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                {/* Gradient vertical: transparent sus, opac 100% din dreptul primului punct */}
+                {/* Gradient vertical: transparent sus, opac între primul și ultimul punct, transparent la capăt */}
                 <defs>
                   <linearGradient
                     id="timeline-fade"
@@ -227,7 +227,8 @@ export default function JoinExperienceTimeline() {
                   >
                     <stop offset="0" stopColor="#C6A378" stopOpacity="0" />
                     <stop offset="0.125" stopColor="#C6A378" stopOpacity="1" />
-                    <stop offset="1" stopColor="#C6A378" stopOpacity="1" />
+                    <stop offset="0.875" stopColor="#C6A378" stopOpacity="1" />
+                    <stop offset="1" stopColor="#C6A378" stopOpacity="0" />
                   </linearGradient>
                 </defs>
 
