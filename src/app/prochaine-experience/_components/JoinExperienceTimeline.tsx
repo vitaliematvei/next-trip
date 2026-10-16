@@ -7,7 +7,6 @@ import {
   useScroll,
   useSpring,
   useTransform,
-  useReducedMotion,
   type MotionValue,
 } from 'framer-motion';
 
@@ -62,11 +61,9 @@ const steps: Step[] = [
 function TimelineStep({
   step,
   pathLength,
-  reduceMotion,
 }: {
   step: Step;
   pathLength: MotionValue<number>;
-  reduceMotion: boolean;
 }) {
   // Pasul apare exact când linia desenată ajunge la poziția lui
   const reveal = useTransform(
@@ -87,8 +84,8 @@ function TimelineStep({
         style={{
           top,
           left: isLeft ? 'calc(50% - 21px)' : 'calc(50% + 21px)',
-          scale: reduceMotion ? 1 : reveal,
-          opacity: reduceMotion ? 1 : reveal,
+          scale: reveal,
+          opacity: reveal,
         }}
         className="absolute -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#C6A378] shadow-[0_0_12px_#C6A378] z-20"
       />
@@ -96,8 +93,8 @@ function TimelineStep({
       <motion.div
         style={{
           top,
-          opacity: reduceMotion ? 1 : reveal,
-          y: reduceMotion ? 0 : y,
+          opacity: reveal,
+          y,
         }}
         className={`absolute -translate-y-1/2 w-[calc(50%-5.5rem)] flex flex-col items-start text-left space-y-1 ${
           isLeft ? 'left-4' : 'left-[calc(50%+5rem)]'
@@ -117,7 +114,6 @@ function TimelineStep({
 
 export default function JoinExperienceTimeline() {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion() ?? false;
 
   // Stare formular contact
   const [formData, setFormData] = useState({
@@ -153,7 +149,7 @@ export default function JoinExperienceTimeline() {
     damping: 28,
     mass: 0.4,
   });
-  const effectivePathLength = shouldReduceMotion ? 1 : pathLength;
+  const effectivePathLength = pathLength;
 
   // Punctul luminos de la capătul liniei, urmărind exact curba
   const pathRef = useRef<SVGPathElement>(null);
@@ -246,20 +242,17 @@ export default function JoinExperienceTimeline() {
                 />
               </svg>
 
-              {!shouldReduceMotion && (
-                <motion.div
-                  aria-hidden="true"
-                  style={{ left: tipLeft, top: tipTop, opacity: tipOpacity }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#F8F0D8] shadow-[0_0_14px_4px_#C6A378] pointer-events-none z-30"
-                />
-              )}
+              <motion.div
+                aria-hidden="true"
+                style={{ left: tipLeft, top: tipTop, opacity: tipOpacity }}
+                className="absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#F8F0D8] shadow-[0_0_14px_4px_#C6A378] pointer-events-none z-30"
+              />
 
               {steps.map((step) => (
                 <TimelineStep
                   key={step.id}
                   step={step}
                   pathLength={pathLength}
-                  reduceMotion={shouldReduceMotion}
                 />
               ))}
             </div>
