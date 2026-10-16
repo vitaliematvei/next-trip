@@ -11,6 +11,7 @@ import ExperienceUniqueParenthesisSection from './_components/ExperienceUniquePa
 import HorizontalScrollGallery from './_components/HorizontalScrollGallery';
 import SharedMemoriesSection from '../_components/home/SharedMemoriesSection';
 import ExperienceFaqSection from './_components/ExperienceFaqSection';
+import JoinExperienceTimeline from './_components/JoinExperienceTimeline';
 
 export const metadata: Metadata = {
   title: 'Prochaine expérience | Next Trip',
@@ -33,6 +34,7 @@ export default function NextExperiencePage() {
         <HorizontalScrollGallery />
         <SharedMemoriesSection />
         <ExperienceFaqSection />
+        <JoinExperienceTimeline />
       </main>
       <Footer />
     </>
