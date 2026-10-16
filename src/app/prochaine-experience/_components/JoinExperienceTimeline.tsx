@@ -10,7 +10,7 @@ import {
   type MotionValue,
 } from 'framer-motion';
 
-// viewBox 120x400 (afișat la 120px lățime): linia curbă trece prin mijloc și oscilează între x=39 și x=81;
+//120x400 (afișat la 120px lățime): linia curbă trece prin mijloc și oscilează între x=39 și x=81;
 // fiecare pas se află la mijlocul unui rând de 100 unități (y = 50, 150, 250, 350)
 const PATH_D =
   'M 39 0 L 39 50 C 39 100, 81 100, 81 150 C 81 200, 39 200, 39 250 C 39 300, 81 300, 81 350 L 81 400';
